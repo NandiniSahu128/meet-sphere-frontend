@@ -1,8 +1,12 @@
 {
   "/_not-found/page": "/_not-found",
+  "/api/v1/users/get_all_activity/route": "/api/v1/users/get_all_activity",
+  "/api/v1/users/add_to_activity/route": "/api/v1/users/add_to_activity",
+  "/api/v1/users/register/route": "/api/v1/users/register",
+  "/api/v1/users/login/route": "/api/v1/users/login",
   "/[url]/page": "/[url]",
+  "/home/page": "/home",
   "/auth/page": "/auth",
   "/history/page": "/history",
-  "/page": "/",
-  "/home/page": "/home"
+  "/page": "/"
 }
