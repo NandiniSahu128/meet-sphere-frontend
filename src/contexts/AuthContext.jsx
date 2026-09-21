@@ -1,10 +1,21 @@
-import React, { createContext, useState } from 'react';
+'use client';
+
+import React, { createContext, useState, useEffect } from 'react';
 import server from '../utils/server';
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      if (token && !userData) {
+        setUserData({ token });
+      }
+    }
+  }, []);
 
   const handleRegister = async (name, username, password) => {
     try {
@@ -42,7 +53,9 @@ export const AuthProvider = ({ children }) => {
       }
 
       if (data.token) {
-        localStorage.setItem('token', data.token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', data.token);
+        }
         setUserData({ username, token: data.token });
       }
       return data;
@@ -53,6 +66,7 @@ export const AuthProvider = ({ children }) => {
 
   const getHistoryOfUser = async () => {
     try {
+      if (typeof window === 'undefined') return [];
       const token = localStorage.getItem('token');
       if (!token) return [];
 
@@ -70,6 +84,7 @@ export const AuthProvider = ({ children }) => {
 
   const addToUserHistory = async (meetingCode) => {
     try {
+      if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
       if (!token) return;
 
@@ -102,4 +117,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-

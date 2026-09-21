@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/[url]/page": "/[url]",
+  "/auth/page": "/auth",
+  "/history/page": "/history",
+  "/page": "/",
+  "/home/page": "/home"
+}
